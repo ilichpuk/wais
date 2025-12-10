@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Запись на стрижку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .btn { padding: 12px; background: #0088cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Запись на стрижку</h2>
+  <input type="text" id="name" placeholder="Ваше имя">
+  <input type="tel" id="phone" placeholder="Телефон">
+  <select id="service">
+    <option value="male">Мужская стрижка</option>
+    <option value="female">Женская стрижка</option>
+    <option value="child">Детская стрижка</option>
+  </select>
+  <button class="btn" onclick="sendData()">Записаться</button>
+
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    function sendData() {
+      const data = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        service: document.getElementById("service").value
+      };
+      tg.sendData(JSON.stringify(data));
+    }
+  </script>
+</body>
+</html>
